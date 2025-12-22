@@ -1,0 +1,34 @@
+{
+  "name": "my-vue-app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "change-case": "^5.4.4",
+    "element-plus": "^2.13.0",
+    "pinia": "^3.0.4",
+    "vue": "^3.5.24",
+    "vue-router": "^4.6.4",
+    "vue3-scale-box": "^0.1.9"
+  },
+  "devDependencies": {
+    "@ctrlc/vite-plugin-vue-setup-extend": "^1.2.0",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "@vue/compiler-sfc": "^3.5.26",
+    "axios": "^1.13.2",
+    "imba-cache": "^1.1.18",
+    "path": "^0.12.7",
+    "sm-crypto": "^0.3.13",
+    "unocss": "^66.5.10",
+    "unplugin-auto-import": "^20.3.0",
+    "unplugin-icons": "^22.5.0",
+    "unplugin-vue-components": "^30.0.0",
+    "vite": "^7.2.4",
+    "vite-plugin-pages": "^0.33.2"
+  }
+}
