@@ -11,7 +11,7 @@ import UnoCSS from 'unocss/vite'
 import vueScriptExtend from '@ctrlc/vite-plugin-vue-setup-extend';
 
 export default defineConfig({
-    base: '/fpjg2/',
+    base: '/fpjg/',
     define: {
         global: 'globalThis',
     },
@@ -25,7 +25,8 @@ export default defineConfig({
     ],
     resolve: {
         alias: {
-            '@': resolve(__dirname, './src')
+            '@': resolve(__dirname, './src'),
+            '#': resolve(__dirname, 'types'),
         }
     },
     server: {

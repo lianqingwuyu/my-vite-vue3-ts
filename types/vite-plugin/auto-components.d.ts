@@ -12,11 +12,10 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Backbtn: typeof import('./../../src/components/backbtn/index.vue')['default']
-    BackbtnIndex2: typeof import('./../../src/components/backbtn/index2.vue')['default']
-    Ceshi: typeof import('./../../src/components/ceshi/index.vue')['default']
-    ElButton: typeof import('element-plus/es')['ElButton']
-    ElIcon: typeof import('element-plus/es')['ElIcon']
+    Ceshi: typeof import('./../../src/components/ceshi.vue')['default']
+    DialogBox: typeof import('./../../src/components/dialogBox.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    YjsTable1: typeof import('./../../src/components/yjs/table/1/index.vue')['default']
   }
 }

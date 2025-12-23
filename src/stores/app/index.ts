@@ -5,6 +5,9 @@ import axios from 'axios'
 export const useAppStore = defineStore('index', {
     state: () => ({
         MenuData: [],
+        yjs_ldps: false,
+        yjs_ldps_params: {},
+        cs:'asdasd'
     }),
     getters: {
         getMenuData: (state) => state.MenuData
@@ -53,6 +56,10 @@ export const useAppStore = defineStore('index', {
                 this.MenuData = MenuData
             })
         },
+        setKeyData(state, data) {
+            state[data.key] = data.data;
+            setLocal(`App-${data.key}`, JSON.stringify(data.data));
+        }
     }
 
 })

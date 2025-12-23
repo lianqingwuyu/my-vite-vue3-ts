@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import dialogBox from "@/customComponents/dialogBox.vue";
+import dialogBox from "@/components/dialogBox.vue";
 
 /**
  * @param Component 组件实例的选项对象
