@@ -1,10 +1,7 @@
 import Components from 'unplugin-vue-components/vite'
-import {ElementPlusResolver} from 'unplugin-vue-components/resolvers'
 import {NaiveUiResolver} from 'unplugin-vue-components/resolvers'
 import IconsResolver from 'unplugin-icons/resolver'
-import { resolve } from 'path'
-import {parse} from '@vue/compiler-sfc'
-// 自定义解析器：支持从<script setup name="xxx">获取组件名
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 // 按需引入组件 + 自动引入组件
 export default () => {
@@ -18,9 +15,11 @@ export default () => {
         // 自定义组件的解析程序
         // 解析器 -> element plus ui解析
         resolvers: [
-            ElementPlusResolver(),
             NaiveUiResolver(),
             IconsResolver(),
+            ElementPlusResolver({
+                importStyle: 'sass' // 或 'css'
+            }),
         ],
         // 生成“components.d.ts”全局声明，
         // 还接受自定义文件名的路径

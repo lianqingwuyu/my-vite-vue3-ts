@@ -1,14 +1,13 @@
-<script setup>
-</script>
-
 <template>
-  <div class="flex-between">
-    <div>1</div>
-    <div>2</div>
-    <div>3</div>
+  <div class="flex-between wh100">
+
   </div>
 </template>
+<script setup>
 
+</script>
 <style scoped>
-
+.flex-between {
+  background: red;
+}
 </style>

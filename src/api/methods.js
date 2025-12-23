@@ -1,21 +1,21 @@
 //定时跳动
-import {setCacheLoca, getCacheLoca} from 'imba-cache'
+import {setCacheLoca, getCacheLoca , delCache} from 'imba-cache'
 
 export const setLocal = setCacheLoca
 export const getLocal =getCacheLoca
+export const removeLocal = delCache
 export const refreshToken = () => {
     var url = window.location.href;
     if (url.indexOf("hnredirect") > 0) {
         return
     }
     var refresh_token = "undefined";
-    if (setLocal("saber-refreshToken")) {
-        refresh_token = JSON.parse(setLocal("saber-refreshToken")).content;
+    if (getLocal("saber-refreshToken")) {
+        refresh_token = JSON.parse(getLocal("saber-refreshToken")).content;
     }
     if (refresh_token == "undefined" || (refresh_token != "undefined" && !refresh_token)) {
         refresh_token = window.localStorage.refresh_token;
     }
-
     axios({
         method: "POST",
         url: "/misapi/swdp-auth/oauth/swdp-token",
@@ -25,8 +25,8 @@ export const refreshToken = () => {
         }
     })
         .then((res) => {
-            getLocal("refresh_token", res.data.refresh_token);
-            getLocal("BladeAuth", res.data.access_token);
+            setLocal("refresh_token", res.data.refresh_token);
+            setLocal("BladeAuth", res.data.access_token);
         })
         .catch((err) => {
         });

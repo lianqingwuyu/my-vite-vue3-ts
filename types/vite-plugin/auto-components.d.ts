@@ -13,6 +13,9 @@ declare module 'vue' {
   export interface GlobalComponents {
     Backbtn: typeof import('./../../src/components/backbtn/index.vue')['default']
     BackbtnIndex2: typeof import('./../../src/components/backbtn/index2.vue')['default']
+    Ceshi: typeof import('./../../src/components/ceshi/index.vue')['default']
+    ElButton: typeof import('element-plus/es')['ElButton']
+    ElIcon: typeof import('element-plus/es')['ElIcon']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

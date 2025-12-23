@@ -1,14 +1,14 @@
 <template>
-  <div >
-    <div class="backbtn">
-      <i class="el-icon-s-unfold" @click="init"></i>
+  <div>
+    <div class="backbtn flex-item-cneter flex-center pointer">
+      <img src="@/assets/backbtn/icon.png" alt=""  @click="init" class="no-inherit">
     </div>
     <div class="yy" v-if="drawer" @click="drawer = false"></div>
     <div class="box " v-if="drawer">
-      <div v-for="(item,index) in MenuData" :key="index" class="b_item">
+      <div v-for="(item,index) in userStore.MenuData" :key="index" class="b_item">
         <div
-          :class="['left',`${item.active_index}`,{left2:!(item.children&&item.children.length>0) , active : MenuData_active.path == item.path  }]"
-          @click="handleselect(item,item.path,[item.path],1)"> {{ item.menuName }}
+            :class="['left',`${item.active_index}`,{left2:!(item.children&&item.children.length>0) , active : MenuData_active.path == item.path  }]"
+            @click="handleselect(item,item.path,[item.path],1)"> {{ item.menuName }}
         </div>
         <template v-if="item.children&&item.children.length>0">
           <div class="right">
@@ -24,98 +24,105 @@
   </div>
 </template>
 
-<script>
-import {mapState} from "vuex";
-export default {
-  components: {},
-  computed: {
-    ...mapState({
-      MenuData: state => state.app.MenuData
-    })
-  },
-  data() {
-    return {
-      MenuData_active: {},
-      drawer: false,
-      fullscreenLoading: false,
-    };
-  },
-  props: {
-    isfp: {
-      type: String,
-      default: "",
-    },
-    issdp: {
-      type: String,
-      default: "",
-    },
-  },
-  watch: {
-    '$route': {
-      handler(old) {
-        let time;
-        time = setInterval(() => {
-          if (this.MenuData.length != 0) {
-            this.MenuData.map(i => {
-              if (i.children && i.children.length != 0) {
-                i.children.map(j => {
-                  this.route_active(old, j)
-                })
-              } else {
-                this.route_active(old, i)
-              }
-            })
-            clearInterval(time)
-          }
-        }, 1000)
-      }, deep: true, immediate: true
-    },
-  },
-  created() {
-  },
-  mounted() {
-  },
-  beforeDestroy() {
-  },
-  methods: {
-    route_active(old, newold) {
-
-
-      if (String(newold.path).includes('/fpjg') || String(newold.path).includes('/qxj')) {
-        let path = newold.path.split('/#')[1]
-        if (old.fullPath == path) {
-          this.MenuData_active = newold
-        }
-      } else if (String(newold.path).includes('/zhjg')) {
-        if (old.fullPath == newold.path) {
-          this.MenuData_active = newold
-
-        }
-      }
-
-    },
-    open() {
-      this.$confirm("即将退出登录, 是否继续?", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning",
-      })
-        .then(() => {
-          this.$ajax({
-            method: "GET",
-            url: '/misapi/swdp-auth/oauth/logout',
-            headers: {
-              TenantId: "10000",
-            },
-            params: {},
+<script setup>
+// import { ElMessage, ElMessageBox } from 'element-plus'
+import {useAppStore} from '@/stores/app'
+//获取 /stores/app 模块的实例
+const userStore = useAppStore()
+//获取菜单数据
+userStore.setMenuData()
+//获取路由实例
+const route = useRoute()
+//当前选择路由菜单
+const MenuData_active = ref({})
+//获取组件当前状态
+const drawer = ref(false)
+// 监听响应式变量
+watch(
+    () => route.path,  // 监听路由路径变化
+    (toPath, fromPath) => {
+      // 处理路由变化逻辑
+      let time;
+      time = setInterval(() => {
+        if (toRaw(userStore.MenuData).length != 0) {
+          toRaw(userStore.MenuData).map(i => {
+            if (i.children && i.children.length != 0) {
+              i.children.map(j => {
+                route_active(old, j)
+              })
+            } else {
+              route_active(old, i)
+            }
           })
+          clearInterval(time)
+        }
+      }, 1000)
+    }
+)
+const handleselect = (item, key, keyPath, type) => {
+  //debugger
+  //return
+  //修改密码
+  if (item.componentname) {
+    let obj = {
+      w: item.params.w,
+      h: item.params.h,
+      c: item.params.c,
+      componentname: item.componentname,
+    }
+    this.showModel(obj)
+    return
+  }
+  if (!key || (type == 1 && item.children && item.children.length != 0)) return
+  let url = "";
+  if (key == "/mis") {
+    open();
+    drawer.value = false
+    return;
+  } else {
+    url = key;
+    setLocal("path", route.path);
+    setLocal("path_name", location.pathname);
+  }
+  location.replace(url);
+  drawer.value = false
+}
+const route_active = (old, newold) => {
+  if (String(newold.path).includes('/fpjg') || String(newold.path).includes('/qxj')) {
+    let path = newold.path.split('/#')[1]
+    if (old.fullPath == path) {
+      MenuData_active.value = newold
+    }
+  } else if (String(newold.path).includes('/zhjg')) {
+    if (old.fullPath == newold.path) {
+      MenuData_active.value = newold
+    }
+  }
+
+}
+const open = () => {
+
+  ElMessageBox.confirm("即将退出登录, 是否继续?", {
+    confirmButtonText: "确定",
+    cancelButtonText: "取消",
+    type: "warning",
+  })
+      .then(() => {
+        this.$ajax({
+          method: "GET",
+          url: '/misapi/swdp-auth/oauth/logout',
+          headers: {
+            TenantId: "10000",
+          },
+          params: {},
+        })
             .then((res) => {
               this.$message({
                 type: "success",
                 message: "退出成功!",
               });
-              window.localStorage.removeItem("BladeAuth");
-              window.localStorage.removeItem("refresh_token");
+              removeLocal("BladeAuth");
+              removeLocal("refresh_token");
               let url = "";
               if (window.location.href.indexOf("localhost") == -1) {
                 url = window.location.origin + "/mis/#/login";
@@ -127,49 +134,17 @@ export default {
             })
             .catch((err) => {
             });
-        })
-        .catch(() => {
-        });
-    },
-    handleselect(item, key, keyPath,type) {
-      //debugger
-      //return
-      //修改密码
-      if(item.componentname ){
-        let obj = {
-          w: item.params.w,
-          h: item.params.h,
-          c: item.params.c,
-          componentname: item.componentname,
-        }
-        this.showModel(obj)
-        console.log(111)
-        return
-      }
-      if (!key || (type == 1 &&item.children && item.children.length != 0)) return
-      let url = "";
-      if (key == "/mis") {
-        this.open();
-        this.drawer = false
-        return;
-      } else {
-        url = key;
-        localStorage.setItem("path", this.$route.path);
-        localStorage.setItem("path_name", location.pathname);
-      }
-      location.replace(url);
-      this.drawer = false
-      return
-    },
-    init() {
-      this.drawer = true;
-      this.$nextTick(() => {
-        $(".box ").scrollTop($(`.${this.MenuData_active.active_index}`).offset().top - 40)
       })
-    },
+      .catch(() => {
+      });
+}
+const init = () => {
+  drawer.value = true;
+  nextTick(() => {
+    $(".box ").scrollTop($(`.${MenuData_active.value.active_index}`).offset().top - 40)
+  })
+}
 
-  },
-};
 </script>
 
 <style scoped lang="scss">
@@ -221,9 +196,11 @@ export default {
   left: 0;
   overflow-y: auto;
   z-index: 20999993;
+
   .b_item {
     display: flex;
     border-bottom: 1px solid #000;
+
     .left {
       background: rgba(21, 28, 58, 0.9);
       width: 40px;
@@ -291,7 +268,7 @@ export default {
   text-align: center;
   line-height: 40px;
 
-  .el-icon-s-unfold {
+  .no-inherit {
     font-size: 24px;
     color: #000;
     display: none;
@@ -300,8 +277,8 @@ export default {
   &:hover {
     width: 50px;
 
-    .el-icon-s-unfold {
-      display: inline-block;
+    .no-inherit {
+      display: block;
       width: 30px;
       height: 30px;
       font-size: 24px;

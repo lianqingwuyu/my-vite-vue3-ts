@@ -6,7 +6,10 @@
 // biome-ignore lint: disable
 export {}
 declare global {
+  const $: typeof import('jquery').default
   const EffectScope: typeof import('vue').EffectScope
+  const ElMessage: typeof import('element-plus/es').ElMessage
+  const ElMessageBox: typeof import('element-plus/es').ElMessageBox
   const SetUnitConversion: typeof import('../../src/api/methods.js').SetUnitConversion
   const SetUnitConversion2: typeof import('../../src/api/methods.js').SetUnitConversion2
   const accAdd: typeof import('../../src/api/methods.js').accAdd
@@ -74,6 +77,7 @@ declare global {
   const readonly: typeof import('vue').readonly
   const ref: typeof import('vue').ref
   const refreshToken: typeof import('../../src/api/methods.js').refreshToken
+  const removeLocal: typeof import('../../src/api/methods.js').removeLocal
   const resolveComponent: typeof import('vue').resolveComponent
   const setActivePinia: typeof import('pinia').setActivePinia
   const setLocal: typeof import('../../src/api/methods.js').setLocal

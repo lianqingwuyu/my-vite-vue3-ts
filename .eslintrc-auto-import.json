@@ -1,10 +1,12 @@
 {
   "globals": {
+    "$": true,
     "Component": true,
     "ComponentPublicInstance": true,
     "ComputedRef": true,
     "DirectiveBinding": true,
     "EffectScope": true,
+    "ElMessageBox": true,
     "ExtractDefaultPropTypes": true,
     "ExtractPropTypes": true,
     "ExtractPublicPropTypes": true,
@@ -85,6 +87,7 @@
     "readonly": true,
     "ref": true,
     "refreshToken": true,
+    "removeLocal": true,
     "resolveComponent": true,
     "setActivePinia": true,
     "setLocal": true,

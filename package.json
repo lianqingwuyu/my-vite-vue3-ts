@@ -9,9 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.3.2",
     "change-case": "^5.4.4",
     "element-plus": "^2.13.0",
+    "jquery": "^3.7.1",
     "pinia": "^3.0.4",
+    "sass": "^1.7.0",
     "vue": "^3.5.24",
     "vue-router": "^4.6.4",
     "vue3-scale-box": "^0.1.9"
@@ -23,6 +26,7 @@
     "axios": "^1.13.2",
     "imba-cache": "^1.1.18",
     "path": "^0.12.7",
+    "sass-embedded": "^1.97.1",
     "sm-crypto": "^0.3.13",
     "unocss": "^66.5.10",
     "unplugin-auto-import": "^20.3.0",
