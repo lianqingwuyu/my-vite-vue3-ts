@@ -8,7 +8,6 @@ import autoImportPlugin from './vite-plugin/vite-plugin-auto-import'
 // Vite 的按需组件自动导入
 import autoComponentsPlugin from './vite-plugin/vite-plugin-auto-components'
 import UnoCSS from 'unocss/vite'
-import vueScriptExtend from '@ctrlc/vite-plugin-vue-setup-extend';
 
 export default defineConfig({
     base: '/fpjg/',
@@ -17,7 +16,6 @@ export default defineConfig({
     },
     plugins: [
         vue(),
-        vueScriptExtend(),
         routerPagePlugin(),
         autoImportPlugin(),
         autoComponentsPlugin(),
