@@ -31,7 +31,7 @@ export const refreshToken = () => {
         .catch((err) => {
         });
 }
-const setNumFun = (array, data, timeName1 = 'name', time) => {
+export const setNumFun = (array, data, timeName1 = 'name', time) => {
     if (!array["values"] && array["values"] != 0) {
         array["values"] = 0
         array.value = Number(data);

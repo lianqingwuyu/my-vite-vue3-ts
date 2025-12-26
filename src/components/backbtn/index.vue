@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="backbtn flex-item-cneter flex-center pointer">
-      <img src="@/assets/backbtn/icon.png" alt=""  @click="init" class="no-inherit">
+      <img src="@/assets/backbtn/icon.png" alt="" @click="init" class="no-inherit">
     </div>
     <div class="yy" v-if="drawer" @click="drawer = false"></div>
     <div class="box " v-if="drawer">
@@ -141,7 +141,9 @@ const open = () => {
 const init = () => {
   drawer.value = true;
   nextTick(() => {
-    $(".box ").scrollTop($(`.${MenuData_active.value.active_index}`).offset().top - 40)
+    if (MenuData_active.value) {
+      $(".box ").scrollTop($(`.${MenuData_active.value.active_index}`).offset().top - 40)
+    }
   })
 }
 

@@ -1,10 +1,8 @@
-import Vue from 'vue'
+
+import { createApp, h } from 'vue'
 import dialogBox from "@/components/dialogBox.vue";
 
-/**
- * @param Component 组件实例的选项对象
- * @param props 组件实例中的prop
- */
+// 保持 [dialogChange](file://E:\work\swdpnew\src\api\dialog.js#L9-L20) 函数不变
 function dialogChange(data, id, methods = 'get') {
   if (methods == 'get') {
     return JSON.parse(localStorage.getItem(data) || '[]')
@@ -21,13 +19,22 @@ function dialogChange(data, id, methods = 'get') {
 export function showModel(props) {
   let id = Math.floor(Math.random(0, 10000) * 10000)
   dialogChange('dialogBoxId', id, 'set')
-  const comp = new (Vue.extend(dialogBox))({propsData: Object.assign({}, props, {id: id})}).$mount()
-  document.getElementsByClassName('vue2-scale-box')[0].appendChild(comp.$el)
-  comp.remove = () => {
-    document.getElementsByClassName('vue2-scale-box')[0].removeChild(comp.$el)
-    comp.$destroy()
+
+  // Vue 3 方式创建和挂载组件
+  const app = createApp({
+    render() {
+      return h(dialogBox, { ...props, id: id })
+    }
+  })
+
+  const vm = app.mount(document.createElement('div'))
+  document.getElementsByClassName('roc-scale-box')[0].appendChild(vm.$el)
+
+  vm.remove = () => {
+    document.getElementsByClassName('roc-scale-box')[0].removeChild(vm.$el)
+    app.unmount() // Vue 3 的卸载方法
   }
-  return comp
+  return vm
 }
 
 export function closeModel(params) {
@@ -35,6 +42,5 @@ export function closeModel(params) {
   $(`#${obj[obj.length - 1]}`).remove();
   obj.pop()
   localStorage.setItem('dialogBoxId', JSON.stringify(obj))
-  console.log(params)
   localStorage.setItem('dialogBoxIdClose', JSON.stringify({length: obj.length, id: obj[obj.length - 1], params}))
 }

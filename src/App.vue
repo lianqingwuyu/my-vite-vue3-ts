@@ -13,13 +13,6 @@ const scaleChange = (scale) => {
   document.documentElement.style.setProperty('--box-scale', scale);
 }
 
-let obj = {
-  w: '65%',
-  h: '670px',
-  componentname: 'Ceshi'
-}
-showModel(obj)
-
 //获取 /stores/app 模块的实例
 const userStore = useAppStore()
 //获取路由实例
@@ -76,7 +69,31 @@ onMounted(() => {
 :root {
   --box-scale: 1;
 }
+.flex-j-a-c {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.flex {
+  display: flex;
+}
+
+.itemCenter {
+  display: flex;
+  align-items: center;
+}
+
+.flexColumn {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.space-between {
+  display: flex;
+  justify-content: space-between;
+}
 .wh100 {
   width: 100%;
   height: 100%;

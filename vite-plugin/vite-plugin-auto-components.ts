@@ -1,8 +1,7 @@
 import Components from 'unplugin-vue-components/vite'
 import {NaiveUiResolver} from 'unplugin-vue-components/resolvers'
 import IconsResolver from 'unplugin-icons/resolver'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-
+import { ElementPlusResolver  } from 'unplugin-vue-components/resolvers'
 // 按需引入组件 + 自动引入组件
 export default () => {
     return Components({

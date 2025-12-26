@@ -8,7 +8,6 @@ export {}
 declare global {
   const $: typeof import('jquery').default
   const EffectScope: typeof import('vue').EffectScope
-  const ElMessage: typeof import('element-plus/es').ElMessage
   const ElMessageBox: typeof import('element-plus/es').ElMessageBox
   const SetUnitConversion: typeof import('../../src/api/methods.js').SetUnitConversion
   const SetUnitConversion2: typeof import('../../src/api/methods.js').SetUnitConversion2
@@ -17,7 +16,7 @@ declare global {
   const accSub: typeof import('../../src/api/methods.js').accSub
   const acceptHMRUpdate: typeof import('pinia').acceptHMRUpdate
   const accp: typeof import('../../src/api/methods.js').accp
-  const axios: typeof import('../../src/api/axios').default
+  const axios: typeof import('../../src/api/axios.js').default
   const closeModel: typeof import('../../src/api/dialog.js').closeModel
   const computed: typeof import('vue').computed
   const createApp: typeof import('vue').createApp
@@ -77,17 +76,18 @@ declare global {
   const readonly: typeof import('vue').readonly
   const ref: typeof import('vue').ref
   const refreshToken: typeof import('../../src/api/methods.js').refreshToken
+  const registerComponents: typeof import('../../src/api/customComponents.js').registerComponents
   const removeLocal: typeof import('../../src/api/methods.js').removeLocal
   const resolveComponent: typeof import('vue').resolveComponent
   const setActivePinia: typeof import('pinia').setActivePinia
   const setLocal: typeof import('../../src/api/methods.js').setLocal
   const setMapStoreSuffix: typeof import('pinia').setMapStoreSuffix
+  const setNumFun: typeof import('../../src/api/methods.js').setNumFun
   const shallowReactive: typeof import('vue').shallowReactive
   const shallowReadonly: typeof import('vue').shallowReadonly
   const shallowRef: typeof import('vue').shallowRef
   const showModel: typeof import('../../src/api/dialog.js').showModel
   const storeToRefs: typeof import('pinia').storeToRefs
-  const stores: typeof import('../../src/stores/index').default
   const swjgdmls: typeof import('../../src/api/methods.js').swjgdmls
   const toFixedFn: typeof import('../../src/api/methods.js').toFixedFn
   const toRaw: typeof import('vue').toRaw

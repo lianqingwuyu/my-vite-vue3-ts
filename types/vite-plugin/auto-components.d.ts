@@ -12,10 +12,17 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Backbtn: typeof import('./../../src/components/backbtn/index.vue')['default']
-    Ceshi: typeof import('./../../src/components/ceshi.vue')['default']
     DialogBox: typeof import('./../../src/components/dialogBox.vue')['default']
+    ElPagination: typeof import('element-plus/es')['ElPagination']
+    ElPopover: typeof import('element-plus/es')['ElPopover']
+    ElTable: typeof import('element-plus/es')['ElTable']
+    ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
+    ElTag: typeof import('element-plus/es')['ElTag']
+    ElTooltip: typeof import('element-plus/es')['ElTooltip']
+    PublicTable: typeof import('./../../src/components/publicTable/index.vue')['default']
+    PublicTableIndex1: typeof import('./../../src/components/publicTable/index1.vue')['default']
+    PublicTableIndex2: typeof import('./../../src/components/publicTable/index2.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    YjsTable1: typeof import('./../../src/components/yjs/table/1/index.vue')['default']
   }
 }
