@@ -1,0 +1,46 @@
+//@font-face {
+//  font-family: MiSans-Bold;
+//  src: url("~@/assets/ttf/MiSans/MiSans-Bold.ttf") format("truetype");
+//}
+.pointer{
+  cursor: pointer;
+}
+*{
+  font-family: MiSans;
+}
+:deep(.echarts_tooltip) {
+  .tooltips_title {
+    font-weight: 400;
+    font-size: 18px;
+    color: #25396F;
+  }
+
+  .icon {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 5px;
+  }
+
+  .tooltips_box_item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: MiSans, MiSans;
+    font-weight: 400;
+    font-size: 16px;
+    color: #25396F;
+    margin-top: 4px;
+
+  }
+
+  .tooltips_box_item_left {
+    margin-right: 20px;
+  }
+
+  .tooltips_box_item_right {
+
+  }
+}
+
+
