@@ -46,10 +46,8 @@ watch(
 onMounted(() => {
   refreshToken();
   if (!JSON.parse(getLocal('yjs_table') || 'false') && !location.hash.includes('ldps_box') && !location.hash.includes('qxyxqxj2')) {
-    axios({
-      url: '/api/yjsjg/ldps/sfczwcldps',
-      method: 'GET'
-    }).then(res => {
+    //获取默认是否展示领导批示弹出
+    userApi.sfczwcldps().then(res => {
       let data = res.data.data
       userStore.setKeyData('setyjsldps', data)
       userStore.setKeyData('saveAppData', {
@@ -60,6 +58,7 @@ onMounted(() => {
       })
       setLocal('yjs_table', true)
     })
+
   }
 })
 </script>

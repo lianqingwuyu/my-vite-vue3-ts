@@ -1,7 +1,8 @@
 <template>
   <div class="flex-between wh100">
-
-    <PublicTable ref="publicTable" @cellClick="cellClick" className="table" :maxHeight="435" :table_obj="table_obj"></PublicTable>
+    <PublicTabs :tabs_params="tabs_params"></PublicTabs>
+    <PublicTable ref="publicTable" @cellClick="cellClick" className="table" :maxHeight="435"
+                 :table_obj="table_obj"></PublicTable>
   </div>
 </template>
 <script setup>
@@ -49,6 +50,13 @@ const table_obj = ref({
       dw: '%'
     }
   ],
+})
+const tabs_params = ref({
+  list: [
+    {label: '行业名称1', value: '0'},
+    {label: '行业名称2', value: '1'},
+  ],
+  index: 0
 })
 
 const cellClick = (row, column, cell, event) => {

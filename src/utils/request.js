@@ -2,10 +2,9 @@
  * axios 封装
  * 请求拦截、响应拦截、错误统一处理
  */
-
 import axios from 'axios'
 import {ElMessage} from 'element-plus';
-import { sm2 } from 'sm-crypto'
+import {sm2} from 'sm-crypto'
 // 创建 axios 实例
 const instance = axios.create()
 
@@ -16,6 +15,7 @@ const privateKey = '087cab12a9653da5c3c3d56e32c586d0b59247f9dba479b92e37273f5ad5
 instance.timeout = 300000
 // 表示跨域请求时是否需要使用凭证
 instance.defaults.withCredentials = true
+// instance.defaults.baseURL = import.meta.env.VITE_API_BASE_URL
 // 环境的切换 `baseURL` 将自动加在 `url` 前面，除非 `url` 是一个绝对 URL
 /* if (process.env.NODE_ENV == 'development') {
     instance.defaults.baseURL = 'https://www.baidu.com';
@@ -42,15 +42,6 @@ instance.interceptors.request.use(config => {
         config.params = {}
         config.params.encryptStr = '04' + encryptStr
     }
-    let hrefUrl = location.href.split('/#/')[1]
-
-    //区县屏特殊处理
-    if (hrefUrl == 'qxyxqxj2') {
-        SetAjaxParams(config, {qxpbz: 'dhb'})
-    } else if (hrefUrl == 'qxyxqxj3') {
-        SetAjaxParams(config, {qxpbz: 'jjb'})
-    }
-
     // console.log('请求拦截器：', config);
     // 在发送请求之前做些什么
 
@@ -247,19 +238,5 @@ const loginOut = () => {
 }
 // - 如果 config.data 是一个字符串，则执行 JSON.parse 。
 // - 如果 config.data 已经是一个对象，则直接使用它。
-const SetAjaxParams = (config, data) => {
-    if (config.method == 'get') {
-        config.params = Object.assign({}, config.params || {}, data)
-    } else if (config.method == 'post') {
-        if (config.data) {
-            let reqData = {}
-            if (typeof config.data == 'string') {
-                reqData = JSON.parse(config.data)
-            } else {
-                reqData = config.data
-            }
-            config.data = Object.assign({}, reqData || {}, data)
-        }
-    }
-}
+
 export default instance;

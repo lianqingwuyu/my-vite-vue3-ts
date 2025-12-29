@@ -5,6 +5,9 @@
 .pointer{
   cursor: pointer;
 }
+*{
+  font-family: MiSans;
+}
 :deep(.echarts_tooltip) {
   .tooltips_title {
     font-weight: 400;

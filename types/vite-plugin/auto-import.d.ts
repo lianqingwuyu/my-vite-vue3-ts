@@ -8,38 +8,43 @@ export {}
 declare global {
   const $: typeof import('jquery').default
   const EffectScope: typeof import('vue').EffectScope
+  const ElMessage: typeof import('element-plus/es').ElMessage
   const ElMessageBox: typeof import('element-plus/es').ElMessageBox
-  const SetUnitConversion: typeof import('../../src/api/methods.js').SetUnitConversion
-  const SetUnitConversion2: typeof import('../../src/api/methods.js').SetUnitConversion2
-  const accAdd: typeof import('../../src/api/methods.js').accAdd
-  const accMul: typeof import('../../src/api/methods.js').accMul
-  const accSub: typeof import('../../src/api/methods.js').accSub
+  const SetUnitConversion: typeof import('../../src/hooks/methods.js').SetUnitConversion
+  const SetUnitConversion2: typeof import('../../src/hooks/methods.js').SetUnitConversion2
+  const accAdd: typeof import('../../src/hooks/methods.js').accAdd
+  const accMul: typeof import('../../src/hooks/methods.js').accMul
+  const accSub: typeof import('../../src/hooks/methods.js').accSub
   const acceptHMRUpdate: typeof import('pinia').acceptHMRUpdate
-  const accp: typeof import('../../src/api/methods.js').accp
-  const axios: typeof import('../../src/api/axios.js').default
-  const closeModel: typeof import('../../src/api/dialog.js').closeModel
+  const accp: typeof import('../../src/hooks/methods.js').accp
+  const api: typeof import('../../src/utils/api.js').default
+  const axios: typeof import('../../src/utils/api.js').axios
+  const closeModel: typeof import('../../src/hooks/dialog.js').closeModel
   const computed: typeof import('vue').computed
   const createApp: typeof import('vue').createApp
   const createPinia: typeof import('pinia').createPinia
   const customRef: typeof import('vue').customRef
-  const deepCopy: typeof import('../../src/api/methods.js').deepCopy
+  const deepCopy: typeof import('../../src/hooks/methods.js').deepCopy
   const defineAsyncComponent: typeof import('vue').defineAsyncComponent
   const defineComponent: typeof import('vue').defineComponent
   const defineStore: typeof import('pinia').defineStore
-  const downloadFile: typeof import('../../src/api/methods.js').downloadFile
-  const ecahrts_hh: typeof import('../../src/api/methods.js').ecahrts_hh
-  const echarts_tooltip: typeof import('../../src/api/methods.js').echarts_tooltip
+  const downloadFile: typeof import('../../src/hooks/methods.js').downloadFile
+  const ecahrts_hh: typeof import('../../src/hooks/methods.js').ecahrts_hh
+  const echarts_tooltip: typeof import('../../src/hooks/methods.js').echarts_tooltip
   const effectScope: typeof import('vue').effectScope
   const getActivePinia: typeof import('pinia').getActivePinia
   const getCurrentInstance: typeof import('vue').getCurrentInstance
   const getCurrentScope: typeof import('vue').getCurrentScope
   const getCurrentWatcher: typeof import('vue').getCurrentWatcher
-  const getFloat: typeof import('../../src/api/methods.js').getFloat
-  const getLocal: typeof import('../../src/api/methods.js').getLocal
-  const getMapArea: typeof import('../../src/api/methods.js').getMapArea
-  const getRandomNumber: typeof import('../../src/api/methods.js').getRandomNumber
-  const getSelectWidth: typeof import('../../src/api/methods.js').getSelectWidth
-  const getYearList: typeof import('../../src/api/methods.js').getYearList
+  const getFloat: typeof import('../../src/hooks/methods.js').getFloat
+  const getLocal: typeof import('../../src/hooks/methods.js').getLocal
+  const getMapArea: typeof import('../../src/hooks/methods.js').getMapArea
+  const getRandomNumber: typeof import('../../src/hooks/methods.js').getRandomNumber
+  const getSelectWidth: typeof import('../../src/hooks/methods.js').getSelectWidth
+  const getYearList: typeof import('../../src/hooks/methods.js').getYearList
+  const goodsApi: typeof import('../../src/utils/modules/user.js').goodsApi
+  const goodsApi2: typeof import('../../src/utils/modules/a/user.js').goodsApi2
+  const goodsApi23: typeof import('../../src/utils/modules/a/j/j.js').goodsApi23
   const h: typeof import('vue').h
   const inject: typeof import('vue').inject
   const isProxy: typeof import('vue').isProxy
@@ -71,25 +76,26 @@ declare global {
   const onUpdated: typeof import('vue').onUpdated
   const onWatcherCleanup: typeof import('vue').onWatcherCleanup
   const provide: typeof import('vue').provide
-  const qfw: typeof import('../../src/api/methods.js').qfw
+  const qfw: typeof import('../../src/hooks/methods.js').qfw
   const reactive: typeof import('vue').reactive
   const readonly: typeof import('vue').readonly
   const ref: typeof import('vue').ref
-  const refreshToken: typeof import('../../src/api/methods.js').refreshToken
-  const registerComponents: typeof import('../../src/api/customComponents.js').registerComponents
-  const removeLocal: typeof import('../../src/api/methods.js').removeLocal
+  const refreshToken: typeof import('../../src/hooks/methods.js').refreshToken
+  const registerComponents: typeof import('../../src/hooks/customComponents.js').registerComponents
+  const removeLocal: typeof import('../../src/hooks/methods.js').removeLocal
+  const request: typeof import('../../src/utils/request.js').default
   const resolveComponent: typeof import('vue').resolveComponent
   const setActivePinia: typeof import('pinia').setActivePinia
-  const setLocal: typeof import('../../src/api/methods.js').setLocal
+  const setLocal: typeof import('../../src/hooks/methods.js').setLocal
   const setMapStoreSuffix: typeof import('pinia').setMapStoreSuffix
-  const setNumFun: typeof import('../../src/api/methods.js').setNumFun
+  const setNumFun: typeof import('../../src/hooks/methods.js').setNumFun
   const shallowReactive: typeof import('vue').shallowReactive
   const shallowReadonly: typeof import('vue').shallowReadonly
   const shallowRef: typeof import('vue').shallowRef
-  const showModel: typeof import('../../src/api/dialog.js').showModel
+  const showModel: typeof import('../../src/hooks/dialog.js').showModel
   const storeToRefs: typeof import('pinia').storeToRefs
-  const swjgdmls: typeof import('../../src/api/methods.js').swjgdmls
-  const toFixedFn: typeof import('../../src/api/methods.js').toFixedFn
+  const swjgdmls: typeof import('../../src/hooks/methods.js').swjgdmls
+  const toFixedFn: typeof import('../../src/hooks/methods.js').toFixedFn
   const toRaw: typeof import('vue').toRaw
   const toRef: typeof import('vue').toRef
   const toRefs: typeof import('vue').toRefs
@@ -110,6 +116,9 @@ declare global {
   const useRouter: typeof import('vue-router').useRouter
   const useSlots: typeof import('vue').useSlots
   const useTemplateRef: typeof import('vue').useTemplateRef
+  const userApi: typeof import('../../src/utils/modules/user.js').userApi
+  const userApi2: typeof import('../../src/utils/modules/a/user.js').userApi2
+  const userApi23: typeof import('../../src/utils/modules/a/j/j.js').userApi23
   const watch: typeof import('vue').watch
   const watchEffect: typeof import('vue').watchEffect
   const watchPostEffect: typeof import('vue').watchPostEffect

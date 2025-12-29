@@ -10,7 +10,7 @@ import 'element-plus/dist/index.css';
 // 全局样式
 import 'uno.css'
 // 导入组件注册函数
-import { registerComponents } from './api/customComponents.js'
+import { registerComponents } from './hooks/customComponents.js'
 
 const app = createApp(App)
 // 注册自定义组件

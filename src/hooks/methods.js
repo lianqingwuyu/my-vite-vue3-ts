@@ -1,8 +1,10 @@
 //定时跳动
-import {setCacheLoca, getCacheLoca , delCache} from 'imba-cache'
+import axios from "@/utils/request.js"
+import {setCacheLoca, getCacheLoca, delCache} from 'imba-cache'
+import {userApi} from "@/utils/modules/user.js";
 
 export const setLocal = setCacheLoca
-export const getLocal =getCacheLoca
+export const getLocal = getCacheLoca
 export const removeLocal = delCache
 export const refreshToken = () => {
     var url = window.location.href;
@@ -16,20 +18,15 @@ export const refreshToken = () => {
     if (refresh_token == "undefined" || (refresh_token != "undefined" && !refresh_token)) {
         refresh_token = window.localStorage.refresh_token;
     }
-    axios({
-        method: "POST",
-        url: "/misapi/swdp-auth/oauth/swdp-token",
-        params: {
-            grant_type: "refresh_token",
-            refresh_token: refresh_token
-        }
+    let data = {
+        grant_type: "refresh_token",
+        refresh_token: refresh_token
+    }
+    //刷新token
+    userApi.refreshToken(data).then((res) => {
+        setLocal("refresh_token", res.data.refresh_token);
+        setLocal("BladeAuth", res.data.access_token);
     })
-        .then((res) => {
-            setLocal("refresh_token", res.data.refresh_token);
-            setLocal("BladeAuth", res.data.access_token);
-        })
-        .catch((err) => {
-        });
 }
 export const setNumFun = (array, data, timeName1 = 'name', time) => {
     if (!array["values"] && array["values"] != 0) {
@@ -393,3 +390,7 @@ export const deepCopy = (obj) => {
     };
     return deepCopy(obj);
 };
+
+const ajax_gg = (url, params) => {
+    // Promise
+}

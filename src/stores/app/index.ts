@@ -1,6 +1,5 @@
 // src/stores/counter.ts
 import {defineStore} from 'pinia'
-import axios from 'axios'
 
 export const useAppStore = defineStore('index', {
     state: () => ({
@@ -13,14 +12,9 @@ export const useAppStore = defineStore('index', {
         getMenuData: (state) => state.MenuData
     },
     actions: {
+        //获取菜单
         setMenuData() {
-            axios({
-                method: "GET",
-                url: "/api/common/user-grant-menu",
-                params: {
-                    parentId: "0",
-                },
-            }).then((res) => {
+            userApi.getuserMenu({parentId: "0",}).then(res=>{
                 let data = res.data.data, xh = 0, active_index = 0
                 data.forEach((i, ix) => {
                     if (i.children && i.children.length != 0) {
