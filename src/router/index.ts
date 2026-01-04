@@ -1,11 +1,11 @@
-import { createRouter, createWebHistory ,createWebHashHistory } from 'vue-router'
-import Home from '@/page/home/index.vue'
+import {createRouter, createWebHistory, createWebHashHistory} from 'vue-router'
+import pages from '~pages'
 
+console.log(pages)
 const routes = [
-    { path: '/', component: Home },
-    { path: '/about', component:  Home }
+    {path: '/', redirect: '/home'},
+    ...pages,
 ]
-
 const router = createRouter({
     history: createWebHashHistory(),
     routes

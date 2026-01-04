@@ -16,6 +16,7 @@
     "mitt": "^3.0.1",
     "pinia": "^3.0.4",
     "sass": "^1.7.0",
+    "vite-plugin-vue-layouts": "^0.11.0",
     "vue": "^3.5.24",
     "vue-router": "^4.6.4",
     "vue3-scale-box": "^0.1.9"

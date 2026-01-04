@@ -1,30 +1,28 @@
 import routerPages from 'vite-plugin-pages'
-import { camelCase } from 'change-case'
+import {camelCase} from 'change-case'
 
-// 案例文件夹格式
-// src/pages/users/[id].vue -> /users/:id (/users/one)
-// src/pages/[user]/settings.vue -> /:user/settings (/one/settings)
-// 可在页面追加
-// <route>
-// {
-//   name: "name-override",
-//   meta: {
-//     requiresAuth: false
-//   }
-// }
-// < /route>
 export default () => {
-  return routerPages({
-    extendRoute(route, parent) {
-      route.name = `${route.name}`.includes('-') ? camelCase(route.name) : route.name
-      const spl = route.path.split('/').filter((f) => f)
-      route.path = route.path?.lastIndexOf('/') > 0 ? `/${spl[spl.length - 1]}` : route.path
-      return route
-    },
-    dirs: [
-      { dir: 'src/page', baseRoute: '' },
-    ],
-    exclude: ['error/*.vue'],
-    extensions: ['vue'],
-  })
+    return routerPages({
+        extendRoute(route, parent) {
+            // 优化路由名称转换逻辑
+            if (route.name && route.name.includes('-')) {
+                route.name = camelCase(route.name)
+            }
+
+            // 优化路径处理逻辑
+            if (route.path && route.path.lastIndexOf('/') > 0) {
+                const pathSegments = route.path.split('/').filter(segment => segment)
+                if (pathSegments.length > 0) {
+                    route.path = `/${pathSegments[pathSegments.length - 1]}`
+                }
+            }
+            return route
+        },
+        // 修正目录配置
+        dirs: [
+            {dir: 'src/views', baseRoute: ''}, // 改为正确的目录路径
+        ],
+        exclude: ['**/error/*.vue'], // 使用更明确的排除模式
+        extensions: ['vue'],
+    })
 }

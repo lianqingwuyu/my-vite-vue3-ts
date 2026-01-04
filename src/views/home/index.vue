@@ -3,6 +3,7 @@
     <PublicTabs :tabs_params="tabs_params"></PublicTabs>
     <PublicTable ref="publicTable" @cellClick="cellClick" className="table" :maxHeight="435"
                  :table_obj="table_obj"></PublicTable>
+    <router-link to="/ceshi">关于我们</router-link>
   </div>
 </template>
 <script setup>
@@ -20,7 +21,7 @@ const table_obj = ref({
     {
       label: '行业名称',
       key: 'mc',
-      align: "left",
+      align: "center",
       children: [
         {
           label: '行业名称',
@@ -34,19 +35,22 @@ const table_obj = ref({
         {
           label: '户数',
           key: 'hs',
-          width: 90
+          width: 90,
+          align: "center",
         },
       ]
     },
     {
       label: '户数',
       key: 'value',
+      align: "center",
       width: 90
     },
     {
       label: '同比',
       key: 'tb',
       width: 90,
+      align: "center",
       dw: '%'
     }
   ],
@@ -58,7 +62,7 @@ const tabs_params = ref({
   ],
   index: 0
 })
-
+const router = useRoute()
 const cellClick = (row, column, cell, event) => {
   console.log(row, column, cell, event)
 }
@@ -68,3 +72,13 @@ const cellClick = (row, column, cell, event) => {
   background: red;
 }
 </style>
+<script>
+export default {
+  name: 'Home',
+  meta: {
+    title: '首页',
+    requiresAuth: true,
+    roles: ['admin', 'user']
+  }
+}
+</script>

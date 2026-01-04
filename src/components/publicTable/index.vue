@@ -26,7 +26,7 @@
         <template #header="scope">
           <div class="flex-j-a-c" v-if="table_obj_deep.sortable != 'element' && i.sortable">
             <div>{{ scope.column.label }}</div>
-            <div class="px  pl-10px pr-10px">
+            <div class="pxgz pl-5px pr-5px">
               <div :class="[{sort_active_top:i.sortable_key == 'ascending'},'px-top pointer']"
                    @click="sortChange(i,'ascending',1)"></div>
               <div :class="[{sort_active_bottom:i.sortable_key == `descending`},'px-bottom pointer']"
@@ -77,7 +77,7 @@
           <template #header="scope">
             <div class="flex-j-a-c" v-if="table_obj_deep.sortable != 'element' && j.sortable">
               <div>{{ scope.column.label }}</div>
-              <div class="px pl-10px pr-10px">
+              <div class="pxgz pl-5px pr-5px">
                 <div :class="[{sort_active_top:j.sortable_key == 'ascending'},'px-top pointer']"
                      @click="sortChange(j,'ascending',1)"></div>
                 <div :class="[{sort_active_bottom:j.sortable_key == `descending`},'px-bottom pointer']"
@@ -355,9 +355,7 @@ const sortChange = (i, key, type) => {
   }
 }
 
-.px {
-  margin-left: 5px;
-
+.pxgz {
   .px-top {
     width: 0;
     height: 0;
