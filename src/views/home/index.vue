@@ -4,6 +4,7 @@
     <PublicTable ref="publicTable" @cellClick="cellClick" className="table" :maxHeight="435"
                  :table_obj="table_obj"></PublicTable>
     <router-link to="/ceshi">关于我们</router-link>
+    <router-view></router-view>
   </div>
 </template>
 <script setup>

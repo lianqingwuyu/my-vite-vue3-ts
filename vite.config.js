@@ -8,7 +8,7 @@ import autoImportPlugin from './vite-plugin/vite-plugin-auto-import'
 // Vite 的按需组件自动导入
 import autoComponentsPlugin from './vite-plugin/vite-plugin-auto-components'
 import UnoCSS from 'unocss/vite'
-// import Layout from "vite-plugin-vue-layouts";
+import Layouts from 'vite-plugin-vue-layouts';
 export default defineConfig({
     base: '/fpjg/',
     define: {
@@ -20,9 +20,7 @@ export default defineConfig({
         autoImportPlugin(),
         autoComponentsPlugin(),
         UnoCSS(),
-        // Layout({
-        //     layoutsDirs:'src/views'
-        // })
+        Layouts()
     ],
     resolve: {
         alias: {
