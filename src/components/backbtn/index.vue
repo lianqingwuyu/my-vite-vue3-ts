@@ -169,24 +169,20 @@ const init = () => {
   background: rgba(23, 22, 26, 0.65);
 }
 
-::v-deep .el-drawer {
+::v-deep(.el-drawer) {
   background: rgba(32, 34, 42, 0.8);
 }
 
-::v-deep {
-  .el-drawer__body {
-    background: rgba(32, 34, 42, 0);
-  }
+::v-deep(.el-drawer__body ) {
+  background: rgba(32, 34, 42, 0);
 }
 
-::v-deep {
-  .el-menu-item {
-    text-align: start;
-  }
+::v-deep(.el-menu-item) {
+  text-align: start;
 }
 
 
-::v-deep .el-submenu__title {
+::v-deep(.el-submenu__title) {
   text-align: left;
 }
 

@@ -4,7 +4,7 @@
     <el-table
         ref="table"
         :data="table_obj_deep.tableData"
-        :class="[className,'']"
+        :class="[className,'myTable']"
         :max-height="maxHeight"
         style="width: 100%;"
         @row-click="rowClick"
@@ -384,7 +384,7 @@ const sortChange = (i, key, type) => {
   }
 }
 
-::v-deep {
+::v-deep(.myTable) {
 
   .green {
     color: rgba(29, 180, 64, 1);
