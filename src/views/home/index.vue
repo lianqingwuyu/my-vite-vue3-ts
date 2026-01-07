@@ -4,10 +4,27 @@
     <PublicTable ref="publicTable" @cellClick="cellClick" className="table" :maxHeight="435"
                  :table_obj="table_obj"></PublicTable>
     <router-link to="/ceshi">关于我们</router-link>
-    <router-view></router-view>
+    <el-button @click="open">打开弹窗</el-button>
   </div>
 </template>
 <script setup>
+const children = [
+  {
+    label: '行业名称',
+    key: 'hymc',
+    align: "center",
+    width: 200,
+    sortable: true,
+    sortable_key: ''
+
+  },
+  {
+    label: '户数',
+    key: 'hs',
+    width: 90,
+    align: "center",
+  },
+];
 const table_obj = ref({
   loading: false,
   tableData: [
@@ -23,23 +40,7 @@ const table_obj = ref({
       label: '行业名称',
       key: 'mc',
       align: "center",
-      children: [
-        {
-          label: '行业名称',
-          key: 'hymc',
-          align: "center",
-          width: 200,
-          sortable: true,
-          sortable_key: ''
-
-        },
-        {
-          label: '户数',
-          key: 'hs',
-          width: 90,
-          align: "center",
-        },
-      ]
+      children: children
     },
     {
       label: '户数',
@@ -66,6 +67,20 @@ const tabs_params = ref({
 const router = useRoute()
 const cellClick = (row, column, cell, event) => {
   console.log(row, column, cell, event)
+}
+const open = () => {
+  let obj = {
+    w: '65%',
+    h: '670px',
+    c: 'yjs_dialog_table',
+    params: {
+      type: 1,
+      maxHeight: 555,
+      ...toRaw(table_obj.value)
+    },
+    componentname: 'YjsCard1'
+  }
+  showModel(obj)
 }
 </script>
 <style scoped>

@@ -14,7 +14,7 @@ import { registerComponents } from './hooks/customComponents.js'
 
 const app = createApp(App)
 // 注册自定义组件
-registerComponents(app)
+// registerComponents(app)
 app.use(router).use(pinia).use(ElementPlus).mount('#app')
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)

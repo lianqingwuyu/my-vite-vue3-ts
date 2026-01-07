@@ -33,7 +33,7 @@ export default defineConfig({
         proxy: {
             // 代理所有以 /api 开头的请求
             '/api': {
-                target: 'http://192.168.100.105:16001', //211.159.182.95
+                target: 'http://211.159.182.95:16001', //211.159.182.95
                 changeOrigin: true,
                 // 重写路径 --> 作用与vue配置pathRewrite作用相同
                 rewrite: (path) => path.replace(/^\/api/, "/")

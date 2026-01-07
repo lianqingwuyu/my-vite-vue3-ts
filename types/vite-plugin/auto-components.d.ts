@@ -13,6 +13,8 @@ declare module 'vue' {
   export interface GlobalComponents {
     Backbtn: typeof import('./../../src/components/backbtn/index.vue')['default']
     DialogBox: typeof import('./../../src/components/dialogBox.vue')['default']
+    ElButton: typeof import('element-plus/es')['ElButton']
+    ElIcon: typeof import('element-plus/es')['ElIcon']
     ElPagination: typeof import('element-plus/es')['ElPagination']
     ElPopover: typeof import('element-plus/es')['ElPopover']
     ElTable: typeof import('element-plus/es')['ElTable']
@@ -22,5 +24,6 @@ declare module 'vue' {
     PublicTabs: typeof import('./../../src/components/publicTabs/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    YjsCard1: typeof import('./../../src/components/yjs/card/1/index.vue')['default']
   }
 }

@@ -7,6 +7,8 @@
 <script setup>
 import ScaleBox from 'vue3-scale-box'
 import {useAppStore} from '@/stores/app'
+import {userApi} from "@/utils/modules/user.js";
+import {getLocal, setLocal} from "@/hooks/methods.js";
 
 
 const scaleChange = (scale) => {
@@ -61,6 +63,28 @@ onMounted(() => {
 
   }
 })
+const refreshToken = () => {
+  var url = window.location.href;
+  if (url.indexOf("hnredirect") > 0) {
+    return
+  }
+  var refresh_token = "undefined";
+  if (getLocal("saber-refreshToken")) {
+    refresh_token = JSON.parse(getLocal("saber-refreshToken")).content;
+  }
+  if (refresh_token == "undefined" || (refresh_token != "undefined" && !refresh_token)) {
+    refresh_token = window.localStorage.refresh_token;
+  }
+  let data = {
+    grant_type: "refresh_token",
+    refresh_token: refresh_token
+  }
+  //刷新token
+  userApi.refreshToken(data).then((res) => {
+    setLocal("refresh_token", res.data.refresh_token);
+    setLocal("BladeAuth", res.data.access_token);
+  })
+}
 </script>
 <style lang="scss">
 @use "@/styles/app.scss";

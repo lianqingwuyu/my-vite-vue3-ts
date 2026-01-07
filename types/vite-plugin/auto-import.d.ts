@@ -7,9 +7,20 @@
 export {}
 declare global {
   const $: typeof import('jquery').default
+  const Api: typeof import('../../src/utils/config.js').Api
+  const ArrowDown: typeof import('@element-plus/icons-vue').ArrowDown
+  const ArrowLeft: typeof import('@element-plus/icons-vue').ArrowLeft
+  const ArrowRight: typeof import('@element-plus/icons-vue').ArrowRight
+  const ArrowUp: typeof import('@element-plus/icons-vue').ArrowUp
+  const Check: typeof import('@element-plus/icons-vue').Check
+  const CircleClose: typeof import('@element-plus/icons-vue').CircleClose
+  const Close: typeof import('@element-plus/icons-vue').Close
   const EffectScope: typeof import('vue').EffectScope
   const ElMessage: typeof import('element-plus/es').ElMessage
   const ElMessageBox: typeof import('element-plus/es').ElMessageBox
+  const Minus: typeof import('@element-plus/icons-vue').Minus
+  const Plus: typeof import('@element-plus/icons-vue').Plus
+  const Search: typeof import('@element-plus/icons-vue').Search
   const SetUnitConversion: typeof import('../../src/hooks/methods.js').SetUnitConversion
   const SetUnitConversion2: typeof import('../../src/hooks/methods.js').SetUnitConversion2
   const accAdd: typeof import('../../src/hooks/methods.js').accAdd
@@ -20,8 +31,10 @@ declare global {
   const api: typeof import('../../src/utils/api.js').default
   const axios: typeof import('../../src/utils/api.js').axios
   const closeModel: typeof import('../../src/hooks/dialog.js').closeModel
+  const commUrl: typeof import('../../src/utils/config.js').commUrl
   const computed: typeof import('vue').computed
   const createApp: typeof import('vue').createApp
+  const createNullLastSortMethod: typeof import('../../src/hooks/methods.js').createNullLastSortMethod
   const createPinia: typeof import('pinia').createPinia
   const customRef: typeof import('vue').customRef
   const deepCopy: typeof import('../../src/hooks/methods.js').deepCopy
@@ -38,13 +51,9 @@ declare global {
   const getCurrentWatcher: typeof import('vue').getCurrentWatcher
   const getFloat: typeof import('../../src/hooks/methods.js').getFloat
   const getLocal: typeof import('../../src/hooks/methods.js').getLocal
-  const getMapArea: typeof import('../../src/hooks/methods.js').getMapArea
   const getRandomNumber: typeof import('../../src/hooks/methods.js').getRandomNumber
   const getSelectWidth: typeof import('../../src/hooks/methods.js').getSelectWidth
   const getYearList: typeof import('../../src/hooks/methods.js').getYearList
-  const goodsApi: typeof import('../../src/utils/modules/user.js').goodsApi
-  const goodsApi2: typeof import('../../src/utils/modules/a/user.js').goodsApi2
-  const goodsApi23: typeof import('../../src/utils/modules/a/j/j.js').goodsApi23
   const h: typeof import('vue').h
   const inject: typeof import('vue').inject
   const isProxy: typeof import('vue').isProxy
@@ -58,6 +67,7 @@ declare global {
   const mapStores: typeof import('pinia').mapStores
   const mapWritableState: typeof import('pinia').mapWritableState
   const markRaw: typeof import('vue').markRaw
+  const misApi: typeof import('../../src/utils/config.js').misApi
   const nextTick: typeof import('vue').nextTick
   const onActivated: typeof import('vue').onActivated
   const onBeforeMount: typeof import('vue').onBeforeMount
@@ -80,7 +90,6 @@ declare global {
   const reactive: typeof import('vue').reactive
   const readonly: typeof import('vue').readonly
   const ref: typeof import('vue').ref
-  const refreshToken: typeof import('../../src/hooks/methods.js').refreshToken
   const registerComponents: typeof import('../../src/hooks/customComponents.js').registerComponents
   const removeLocal: typeof import('../../src/hooks/methods.js').removeLocal
   const request: typeof import('../../src/utils/request.js').default
@@ -88,7 +97,6 @@ declare global {
   const setActivePinia: typeof import('pinia').setActivePinia
   const setLocal: typeof import('../../src/hooks/methods.js').setLocal
   const setMapStoreSuffix: typeof import('pinia').setMapStoreSuffix
-  const setNumFun: typeof import('../../src/hooks/methods.js').setNumFun
   const shallowReactive: typeof import('vue').shallowReactive
   const shallowReadonly: typeof import('vue').shallowReadonly
   const shallowRef: typeof import('vue').shallowRef
@@ -117,8 +125,6 @@ declare global {
   const useSlots: typeof import('vue').useSlots
   const useTemplateRef: typeof import('vue').useTemplateRef
   const userApi: typeof import('../../src/utils/modules/user.js').userApi
-  const userApi2: typeof import('../../src/utils/modules/a/user.js').userApi2
-  const userApi23: typeof import('../../src/utils/modules/a/j/j.js').userApi23
   const watch: typeof import('vue').watch
   const watchEffect: typeof import('vue').watchEffect
   const watchPostEffect: typeof import('vue').watchPostEffect

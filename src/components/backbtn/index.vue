@@ -48,10 +48,10 @@ watch(
           toRaw(userStore.MenuData).map(i => {
             if (i.children && i.children.length != 0) {
               i.children.map(j => {
-                route_active(old, j)
+                route_active(toPath, j)
               })
             } else {
-              route_active(old, i)
+              route_active(toPath, i)
             }
           })
           clearInterval(time)

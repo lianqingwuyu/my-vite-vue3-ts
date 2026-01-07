@@ -2,22 +2,25 @@
   <div :id="id" class="dialogBox" @click="close" :style="{background:`rgba(0, 0, 0, ${props.opacity || 0.8})`}">
     <div :class="['center', props.c]" :style="{ width: props.w, height: props.h,  background :props.b ? props.b : ''}"
          @click.stop="">
-      <i class="el-icon-close" @click.stop="close"></i>
+      <el-icon :size="24" color="#fff"  @click.stop="close" class="el-icon-close">
+        <Close />
+      </el-icon>
       <!-- 内容区域 -->
       <div :class="[props.params && props.params.headerType === 1 ? 'content ' : '' , 'wh100']">
         <component :is="currentComponentName" :params_box="props.params || {}" ref="dialogBox"
                    :style="props.styles || {}"
-                 ></component>
+        ></component>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import { Close } from '@element-plus/icons-vue'
 const getComponentNameFromPath = (pathStr) => {
   if (!pathStr) return
   let str = pathStr.replace(/^\.\//, '').replace('/index.vue', '').replace(/\.vue$/, '');
-  if(str){
+  if (str) {
     return str.split('/').join('').toLowerCase()
   }
   return ''
@@ -69,7 +72,7 @@ onMounted(() => {
 
   Object.entries(components).forEach(([path, component]) => {
     if (getComponentNameFromPath(path) === props.componentname.toLowerCase()) {
-      currentComponentName.value =  defineAsyncComponent(component)
+      currentComponentName.value = defineAsyncComponent(component)
     }
 
   });
@@ -91,7 +94,6 @@ onMounted(() => {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    padding: 40px 40px 20px 40px;
   }
 
   .el-icon-close {

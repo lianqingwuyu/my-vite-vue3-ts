@@ -26,7 +26,6 @@ function generateComponentName(filePath) {
   
   // 如果是index.vue，使用父目录名；否则使用文件名
   const componentName = fileName === 'index' ? folderName : fileName
-  
   // 转换为PascalCase
   return componentName.charAt(0).toUpperCase() + componentName.slice(1)
 }

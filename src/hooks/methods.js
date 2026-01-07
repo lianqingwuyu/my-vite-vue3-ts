@@ -1,45 +1,9 @@
 //定时跳动
-import axios from "@/utils/request.js"
 import {setCacheLoca, getCacheLoca, delCache} from 'imba-cache'
-import {userApi} from "@/utils/modules/user.js";
-
 export const setLocal = setCacheLoca
 export const getLocal = getCacheLoca
 export const removeLocal = delCache
-export const refreshToken = () => {
-    var url = window.location.href;
-    if (url.indexOf("hnredirect") > 0) {
-        return
-    }
-    var refresh_token = "undefined";
-    if (getLocal("saber-refreshToken")) {
-        refresh_token = JSON.parse(getLocal("saber-refreshToken")).content;
-    }
-    if (refresh_token == "undefined" || (refresh_token != "undefined" && !refresh_token)) {
-        refresh_token = window.localStorage.refresh_token;
-    }
-    let data = {
-        grant_type: "refresh_token",
-        refresh_token: refresh_token
-    }
-    //刷新token
-    userApi.refreshToken(data).then((res) => {
-        setLocal("refresh_token", res.data.refresh_token);
-        setLocal("BladeAuth", res.data.access_token);
-    })
-}
-export const setNumFun = (array, data, timeName1 = 'name', time) => {
-    if (!array["values"] && array["values"] != 0) {
-        array["values"] = 0
-        array.value = Number(data);
-    } else {
-        timeName1 = setTimeout(() => {
-            array["values"] = Number(array.value);
-            array.value = Number(data);
-        }, time ? time : Math.random() * 5)
-    }
-}
-//echarts 换行
+//echarts 换行 e = 字符串 max = 为多少字符换行
 export const ecahrts_hh = (e, max) => {
     var newStr = "";
     var start, end;
@@ -80,7 +44,6 @@ export const accAdd = (num1, num2) => {
     // return (num1*m+num2*m)/m;
     return Math.round(num1 * m + num2 * m) / m;
 }
-
 // 两个浮点数相减
 export const accp = (num1, num2) => {
     var r1, r2, m, n;
@@ -98,7 +61,6 @@ export const accp = (num1, num2) => {
     n = (r1 >= r2) ? r1 : r2;
     return (Math.round(num1 * m - num2 * m) / m).toFixed(n);
 }
-
 // 生成 min 到 max 之间的随机
 export const getRandomNumber = (min, max) => {
     // 计算范围内的随机数
@@ -108,7 +70,6 @@ export const getRandomNumber = (min, max) => {
     // 返回随机数
     return randomNumber;
 }
-
 // 保留小数方法
 export const toFixedFn = (num1, xsLen = 2) => {
     if (!isNaN(num1)) {
@@ -129,7 +90,6 @@ export const toFixedFn = (num1, xsLen = 2) => {
         return '0.00'
     }
 }
-
 // js中保留4位小数，超过4位截取保留4位，不足4位补足0
 export const getFloat = function (number, n) {
     n = n ? parseInt(n) : 0;
@@ -140,8 +100,7 @@ export const getFloat = function (number, n) {
     number = Number(number).toFixed(n); //补足位数
     return number;
 }
-
-
+// 数字转千分位 num = 数字 check = 是否显示2小数位
 export const qfw = function (num, check = false) {
     if (num) {
         let nums = Number(num).toFixed(2)
@@ -159,7 +118,7 @@ export const qfw = function (num, check = false) {
         return check ? "0.00" : '0'
     }
 }
-// 两数相除
+// 两个浮点数相除
 export const accSub = function (num1, num2) {
     var t1, t2, r1, r2;
     try {
@@ -176,7 +135,7 @@ export const accSub = function (num1, num2) {
     r2 = Number(num2.toString().replace(".", ""));
     return (r1 / r2) * Math.pow(10, t2 - t1);
 }
-
+// 两个浮点数相乘
 export const accMul = function (num1, num2) {
     var m = 0, s1 = num1.toString(), s2 = num2.toString();
     try {
@@ -189,7 +148,7 @@ export const accMul = function (num1, num2) {
     }
     return Number(s1.replace(".", "")) * Number(s2.replace(".", "")) / Math.pow(10, m);
 }
-
+// 金额转换 num = 数字 dw = 单位 len = 保留几位数位
 export const SetUnitConversion = function (num = 0, dw, len = 2) {
     var moneyUnits = ["", "万元", "亿元", "万亿"]
     // var moneyUnits = []
@@ -217,8 +176,6 @@ export const SetUnitConversion = function (num = 0, dw, len = 2) {
     m.unit = curentUnit;
     return m;
 }
-
-
 export const SetUnitConversion2 = function (amountStr, dw) {
     // 清理输入中的非数字和小数点字符
     // 清理输入并转换为数字
@@ -269,8 +226,7 @@ export const SetUnitConversion2 = function (amountStr, dw) {
     //formatted + unit;
 
 }
-
-
+// 判断字符串长度
 function StrNumSize(tempNum) {
     var stringNum = tempNum.toString()
     var index = stringNum.indexOf(".")
@@ -280,14 +236,12 @@ function StrNumSize(tempNum) {
     }
     return newNum.length
 }
-
-// function DonetoFixed(num, count) {//保留两位不四舍五入
-//   var newNum = parseInt(num * Math.pow(10, count)) / Math.pow(10, count);
+// 四舍五入
 function DonetoFixed(num, count) {//保留两位并四舍五入
     var newNum = Math.round(num * Math.pow(10, count)) / Math.pow(10, count);
     return newNum;
 }
-
+// echarts 的 tooltip
 export const echarts_tooltip = function (keyList = () => {
 }, className = 'echarts_tooltip') {
     return {
@@ -312,7 +266,6 @@ export const echarts_tooltip = function (keyList = () => {
         }
     }
 }
-
 // 判断税务机关代码类型  返回 0-省 1-市 2-区县 3-科所
 export const swjgdmls = (value = '') => {
     if (value.slice(-8) == '00000000') {
@@ -325,16 +278,39 @@ export const swjgdmls = (value = '') => {
         return 3
     }
 }
-
 // 返回年份
-export const getYearList = (starts = 2019, dw = '') => {
+export const getYearList = (params = {}) => {
+
+    params = {
+        starts: null,
+        dw: '',
+        del: [],
+        label: 'label',
+        value: 'value',
+        unshiftarr: [],
+        pusharr: [],
+        ...params
+    };
     let arr = [], end = new Date().getFullYear()
-    for (let i = starts; i <= end; i++) {
+
+    if (params.starts == null) {
+        params.starts = end - 2
+    }
+    console.log(params, "yearparams")
+
+    for (let i = params.starts; i <= end; i++) {
+        if (params.del.includes(i)) {
+            continue
+        }
         arr.push({
-            label: i + dw,
-            value: i
+            [params.label]: i + params.dw,  // Use params.label as the key for label
+            [params.value]: i
         })
     }
+    arr = arr.reverse()
+    arr.unshift(...params.unshiftarr)
+    arr.push(...params.pusharr)
+    console.log(arr, "yearparams")
     return arr
 }
 //value 文字 数组[0] 文字大小 数组[1] 数字大小 size 默认大小
@@ -346,6 +322,7 @@ export const getSelectWidth = (value = '', arr = [16, 16], size) => {
     max += value.match(/[^a-zA-Z0-9]/g)?.join('').length * arr[0] || 0
     return (!max ? size : max + 50) + 'px'
 }
+// 下载文件
 export const downloadFile = async (url = '', name) => {
     const link = document.createElement('a');
     link.href = url;
@@ -354,25 +331,7 @@ export const downloadFile = async (url = '', name) => {
     link.click();
     document.body.removeChild(link); // 下载完成后移除元素
 }
-
-export const getMapArea = (points) => {
-    const R = 6378137; // 地球半径（米）
-    let area = 0;
-    const len = points.length;
-
-    for (let i = 0; i < len; i++) {
-        const p1 = points[i];
-        const p2 = points[(i + 1) % len]; // 下一个点，最后一个点连接第一个点形成闭合多边形
-
-        const x1 = (p1.jd * Math.PI / 180) * Math.cos(p1.wd * Math.PI / 180);
-        const y1 = p1.wd * Math.PI / 180;
-        const x2 = (p2.jd * Math.PI / 180) * Math.cos(p2.wd * Math.PI / 180);
-        const y2 = p2.wd * Math.PI / 180;
-
-        area += (x1 * y2 - x2 * y1);
-    }
-    return (Math.abs(area) / 2 * R * R).toFixed(2);
-}
+//数组、对象深度拷贝
 export const deepCopy = (obj) => {
     const deepCopy = (obj) => {
         if (obj === null || typeof obj !== 'object') return obj;
@@ -390,7 +349,20 @@ export const deepCopy = (obj) => {
     };
     return deepCopy(obj);
 };
+//公共表格排序所用
+export const createNullLastSortMethod = (key) => {
+    return (a, b, sortOrder) => {
+        const parseValue = (value) => {
+            if (value === '--' || value === null || value === undefined) {
+                return Infinity;
+            }
+            return parseFloat(value) || 0;
+        };
 
-const ajax_gg = (url, params) => {
-    // Promise
+        const aVal = parseValue(a[key]);
+        const bVal = parseValue(b[key]);
+
+        if (aVal === Infinity && bVal === Infinity) return 0;
+        return aVal - bVal;
+    };
 }
