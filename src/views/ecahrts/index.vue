@@ -1,109 +1,111 @@
 <template>
-  <div class="echart-auto-demo">
+  <div class="echart-demo">
     <!-- 图表容器 -->
-    <div id="auto-chart" style="width: 100%; height: 400px;"></div>
+    <div id="sales-chart" style="width: 100%; height: 400px;"></div>
+    <div ref="profitChartRef" style="width: 100%; height: 400px; margin-top: 20px;"></div>
 
-    <!-- 测试数据修改 -->
-    <div class="controls">
-      <button @click="changeSalesData">修改销量数据</button>
-      <button @click="changeTitle">修改图表标题</button>
-      <button @click="resetAllData">重置所有数据</button>
+    <!-- 操作按钮 -->
+    <div class="btn-group">
+      <button @click="updateSalesChart">更新销量数据</button>
+      <button @click="resizeAllCharts">调整图表尺寸</button>
     </div>
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
+// 1. 定义图表ID（唯一标识）
+const SALES_CHART_ID = 'sales-chart'
+const PROFIT_CHART_ID = 'profit-chart'
 
-// 1. 定义响应式数据（业务数据）
-const salesData = ref([120, 200, 150, 80, 70]) // 销量数据
-const chartTitle = ref('月度销量统计（自动更新）') // 图表标题
-
-// 2. 定义完整的ECharts配置项（响应式）
-const chartOption = reactive({
-  title: { text: chartTitle.value, left: 'center' },
+// 2. 定义图表配置项
+const salesOption = {
+  title: { text: '月度销量统计', left: 'center' },
   tooltip: { trigger: 'axis' },
+  legend: { data: ['线上', '线下'], top: 30 },
   xAxis: { type: 'category', data: ['1月', '2月', '3月', '4月', '5月'] },
   yAxis: { type: 'value' },
   series: [
-    { name: '线上销量', type: 'bar', data: salesData.value }
+    { name: '线上', type: 'bar', data: [120, 200, 150, 80, 70] },
+    { name: '线下', type: 'bar', data: [80, 150, 100, 60, 90] }
   ]
-})
+}
 
-// 图表唯一ID
-const CHART_ID = 'auto-update-chart'
+const profitOption = {
+  title: { text: '月度利润统计', left: 'center' },
+  tooltip: { trigger: 'axis' },
+  xAxis: { type: 'category', data: ['1月', '2月', '3月', '4月', '5月'] },
+  yAxis: { type: 'value' },
+  series: [{ name: '利润', type: 'line', data: [80, 150, 100, 60, 90] }]
+}
 
-// 3. 挂载时创建图表 + 监听数据
+// 3. 定义事件处理器
+const handleSalesClick = (params) => {
+  console.log('点击销量图表：', params)
+  alert(`【${params.seriesName}】-${params.name}：${params.value}`)
+}
+
+const handleProfitMouseOver = (params) => {
+  console.log('悬浮利润图表：', params)
+}
+
+// 4. Vue3 生命周期 - 挂载时创建图表
+const profitChartRef = ref(null)
 onMounted(() => {
-  // 创建图表实例
+  // 创建销量图表（通过ID选择器）
   createEchart(
-      CHART_ID,
-      '#auto-chart',
-      chartOption,
-      null,
-      true,
-      [{ name: 'click', handler: (params) => console.log('点击图表', params) }]
+      SALES_CHART_ID,
+      '#sales-chart',
+      salesOption,
+      null, // 不使用自定义主题
+      true, // 开启自适应
+      [{ name: 'click', handler: handleSalesClick }] // 绑定点击事件
   )
 
-  // ========== 场景1：监听单个响应式数据（销量数据） ==========
-  watchEchartData(
-      CHART_ID,
-      salesData, // 监听的数据源
-      (newVal) => {
-        // 数据变化后，返回需要更新的配置项（增量更新）
-        return {
-          series: [{ name: '线上销量', data: newVal }]
-        }
-      }
-  )
-
-  // ========== 场景2：监听多个响应式数据（标题 + 销量） ==========
-  // watchEchartData(
-  //   CHART_ID,
-  //   [salesData, chartTitle], // 监听多个数据源
-  //   ([newSales, newTitle]) => {
-  //     return {
-  //       title: { text: newTitle },
-  //       series: [{ data: newSales }]
-  //     }
-  //   }
-  // )
-
-  // ========== 场景3：直接监听完整的配置项（最简化） ==========
-  // watchEchartOption(CHART_ID, chartOption)
+  // 创建利润图表（通过ref获取DOM）
+  if (profitChartRef.value) {
+    createEchart(
+        PROFIT_CHART_ID,
+        profitChartRef.value,
+        profitOption,
+        null,
+        true,
+        [{ name: 'mouseover', handler: handleProfitMouseOver }]
+    )
+  }
 })
 
-// 4. 测试：修改数据（图表会自动更新）
-const changeSalesData = () => {
-  // 随机修改销量数据
-  salesData.value = salesData.value.map(() => Math.floor(Math.random() * 200 + 50))
+// 5. 自定义操作函数
+// 更新销量图表数据
+const updateSalesChart = () => {
+  const newOption = {
+    series: [
+      { name: '线上', type: 'bar', data: [150, 220, 180, 90, 110] },
+      { name: '线下', type: 'bar', data: [90, 160, 110, 70, 100] }
+    ]
+  }
+  updateEchart2(SALES_CHART_ID, newOption)
 }
 
-const changeTitle = () => {
-  chartTitle.value = `月度销量统计（${new Date().toLocaleTimeString()}）`
-  // 如果监听了配置项，这里也可以直接改配置项
-  // chartOption.title.text = `月度销量统计（${new Date().toLocaleTimeString()}）`
+// 调整所有图表尺寸
+const resizeAllCharts = () => {
+  resizeEchart(SALES_CHART_ID)
+  resizeEchart(PROFIT_CHART_ID)
 }
 
-const resetAllData = () => {
-  salesData.value = [120, 200, 150, 80, 70]
-  chartTitle.value = '月度销量统计（自动更新）'
-  chartOption.title.text = chartTitle.value
-}
-
-// 5. 卸载时销毁实例（自动销毁所有监听）
+// 6. Vue3 生命周期 - 卸载时销毁所有实例（关键：防止内存泄漏）
 onUnmounted(() => {
-  destroyEchart(CHART_ID)
+  destroyAllEcharts()
 })
 </script>
 
 <style scoped>
-.echart-auto-demo {
+.echart-demo {
   padding: 20px;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
-.controls {
+.btn-group {
   margin-top: 20px;
   display: flex;
   gap: 10px;
@@ -113,7 +115,7 @@ button {
   padding: 8px 16px;
   border: none;
   background: #409eff;
-  color: #fff;
+  color: white;
   border-radius: 4px;
   cursor: pointer;
 }

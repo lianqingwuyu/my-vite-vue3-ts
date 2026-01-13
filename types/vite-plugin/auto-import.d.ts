@@ -25,7 +25,7 @@ declare global {
   const commUrl: typeof import('../../src/utils/config.js').commUrl
   const computed: typeof import('vue').computed
   const createApp: typeof import('vue').createApp
-  const createEchart: typeof import('../../src/utils/echarts.js').createEchart
+  const createEchart: typeof import('../../src/utils/echarts').createEchart
   const createNullLastSortMethod: typeof import('../../src/hooks/methods.js').createNullLastSortMethod
   const createPinia: typeof import('pinia').createPinia
   const customRef: typeof import('vue').customRef
@@ -33,8 +33,8 @@ declare global {
   const defineAsyncComponent: typeof import('vue').defineAsyncComponent
   const defineComponent: typeof import('vue').defineComponent
   const defineStore: typeof import('pinia').defineStore
-  const destroyAllEcharts: typeof import('../../src/utils/echarts.js').destroyAllEcharts
-  const destroyEchart: typeof import('../../src/utils/echarts.js').destroyEchart
+  const destroyAllEcharts: typeof import('../../src/utils/echarts').destroyAllEcharts
+  const destroyEchart: typeof import('../../src/utils/echarts').destroyEchart
   const downloadFile: typeof import('../../src/hooks/methods.js').downloadFile
   const ecahrts_hh: typeof import('../../src/hooks/methods.js').ecahrts_hh
   const echarts_tooltip: typeof import('../../src/hooks/methods.js').echarts_tooltip
@@ -43,7 +43,7 @@ declare global {
   const getCurrentInstance: typeof import('vue').getCurrentInstance
   const getCurrentScope: typeof import('vue').getCurrentScope
   const getCurrentWatcher: typeof import('vue').getCurrentWatcher
-  const getEchartInstance: typeof import('../../src/utils/echarts.js').getEchartInstance
+  const getEchartInstance: typeof import('../../src/utils/echarts').getEchartInstance
   const getFloat: typeof import('../../src/hooks/methods.js').getFloat
   const getLocal: typeof import('../../src/hooks/methods.js').getLocal
   const getRandomNumber: typeof import('../../src/hooks/methods.js').getRandomNumber
@@ -88,7 +88,7 @@ declare global {
   const registerComponents: typeof import('../../src/hooks/customComponents.js').registerComponents
   const removeLocal: typeof import('../../src/hooks/methods.js').removeLocal
   const request: typeof import('../../src/utils/request.js').default
-  const resizeEchart: typeof import('../../src/utils/echarts.js').resizeEchart
+  const resizeEchart: typeof import('../../src/utils/echarts').resizeEchart
   const resolveComponent: typeof import('vue').resolveComponent
   const setActivePinia: typeof import('pinia').setActivePinia
   const setLocal: typeof import('../../src/hooks/methods.js').setLocal
@@ -106,8 +106,8 @@ declare global {
   const toValue: typeof import('vue').toValue
   const triggerRef: typeof import('vue').triggerRef
   const unref: typeof import('vue').unref
-  const updateEchart: typeof import('../../src/utils/echarts.js').updateEchart
-  const updateEchart2: typeof import('../../src/utils/echarts.js').updateEchart2
+  const updateEchart: typeof import('../../src/utils/echarts').updateEchart
+  const updateEchart2: typeof import('../../src/utils/echarts').updateEchart2
   const useAttrs: typeof import('vue').useAttrs
   const useCssModule: typeof import('vue').useCssModule
   const useCssVars: typeof import('vue').useCssVars
@@ -124,8 +124,8 @@ declare global {
   const useTemplateRef: typeof import('vue').useTemplateRef
   const userApi: typeof import('../../src/utils/modules/user.js').userApi
   const watch: typeof import('vue').watch
-  const watchEchartData: typeof import('../../src/utils/echarts.js').watchEchartData
-  const watchEchartOption: typeof import('../../src/utils/echarts.js').watchEchartOption
+  const watchEchartData: typeof import('@/utils/echarts.js').watchEchartData
+  const watchEchartOption: typeof import('@/utils/echarts.js').watchEchartOption
   const watchEffect: typeof import('vue').watchEffect
   const watchPostEffect: typeof import('vue').watchPostEffect
   const watchSyncEffect: typeof import('vue').watchSyncEffect
