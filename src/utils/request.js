@@ -17,6 +17,7 @@ instance.timeout = 300000
 instance.defaults.withCredentials = true
 // instance.defaults.baseURL = import.meta.env.VITE_API_BASE_URL
 // 环境的切换 `baseURL` 将自动加在 `url` 前面，除非 `url` 是一个绝对 URL
+console.log(process.env.NODE_ENV,import.meta.env.VITE_API_BASE_URL)
 /* if (process.env.NODE_ENV == 'development') {
     instance.defaults.baseURL = 'https://www.baidu.com';
 }else if (process.env.NODE_ENV == 'test') {

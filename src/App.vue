@@ -44,7 +44,6 @@ watch(
     },
     {deep: true}
 )
-
 onMounted(() => {
   refreshToken();
   if (!JSON.parse(getLocal('yjs_table') || 'false') && !location.hash.includes('ldps_box') && !location.hash.includes('qxyxqxj2')) {
@@ -117,10 +116,7 @@ const refreshToken = () => {
   display: flex;
   justify-content: space-between;
 }
-.wh100 {
-  width: 100%;
-  height: 100%;
-}
+
 
 .scroll::-webkit-scrollbar {
   width: 10px;

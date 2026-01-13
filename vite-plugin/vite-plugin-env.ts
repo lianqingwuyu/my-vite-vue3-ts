@@ -42,7 +42,6 @@ export const formatEnv = (viteEnv: Record<string, any>): ENV_DTYPE => {
 
 export default (VITE_ENV: ENV_DTYPE): PluginOption => {
     const {VITE_HOST, VITE_PORT, VITE_PUBLIC_PATH, VITE_PROXY, VITE_DROP_CONSOLE, VITE_LEGACY} = VITE_ENV
-
     return {
         name: 'env-config',
         config: () => {

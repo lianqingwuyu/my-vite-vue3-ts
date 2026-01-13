@@ -8,7 +8,7 @@ export default defineConfig({
   shortcuts: {
     'h100b': 'h-[100%]',
     'w100b': 'w-[100%]',
-    'hw100b': 'h-[100%] w-[100%]',
+    'wh100': 'h-[100%] w-[100%]',
     'flex-center': 'flex justify-center',
     'flex-align': 'flex items-center',
     'flex-center-align': 'flex justify-center items-center',

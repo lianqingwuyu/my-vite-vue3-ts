@@ -1,5 +1,8 @@
 //定时跳动
-import {setCacheLoca, getCacheLoca, delCache} from 'imba-cache'
+import {setCacheLoca, getCacheLoca, delCache} from 'imba-cache';
+import * as echarts from 'echarts';
+
+export const $echarts= echarts;
 export const setLocal = setCacheLoca
 export const getLocal = getCacheLoca
 export const removeLocal = delCache

@@ -1,14 +1,14 @@
 <template>
-  <div :id="id" class="dialogBox" @click="close" :style="{background:`rgba(0, 0, 0, ${props.opacity || 0.8})`}">
-    <div :class="['center', props.c]" :style="{ width: props.w, height: props.h,  background :props.b ? props.b : ''}"
+  <div :id="id" class="dialogBox" @click="close" :style="{background:`rgba(0, 0, 0, ${opacity || 0.8})`}">
+    <div :class="['center', c]" :style="{ width: w, height: h,  background :b ? b : ''}"
          @click.stop="">
-      <el-icon :size="24" color="#fff"  @click.stop="close" class="el-icon-close">
-        <Close />
+      <el-icon :size="24" color="#fff" @click.stop="close" class="el-icon-close">
+        <Close/>
       </el-icon>
       <!-- 内容区域 -->
-      <div :class="[props.params && props.params.headerType === 1 ? 'content ' : '' , 'wh100']">
-        <component :is="currentComponentName" :params_box="props.params || {}" ref="dialogBox"
-                   :style="props.styles || {}"
+      <div class="wh100 border-rd-8px overflow-hidden">
+        <component :is="currentComponentName" :params_box="params || {}" ref="dialogBox"
+                   :style="styles || {}"
         ></component>
       </div>
     </div>
@@ -16,7 +16,8 @@
 </template>
 
 <script setup>
-import { Close } from '@element-plus/icons-vue'
+import {Close} from '@element-plus/icons-vue'
+
 const getComponentNameFromPath = (pathStr) => {
   if (!pathStr) return
   let str = pathStr.replace(/^\.\//, '').replace('/index.vue', '').replace(/\.vue$/, '');
@@ -26,7 +27,7 @@ const getComponentNameFromPath = (pathStr) => {
   return ''
 }
 const dialogBox = ref(null)
-const props = defineProps({
+const { componentname, w, h, c, id, styles, params, opacity, b } = defineProps({
   componentname: {
     type: String,
     default: ''
@@ -63,15 +64,15 @@ const props = defineProps({
     default: ''
   }
 })
-const currentComponentName = ref(props.componentname)
+const currentComponentName = ref(componentname)
 const close = () => {
-  closeModel({...props.params})
+  closeModel({...params})
 }
 onMounted(() => {
   const components = import.meta.glob('../components/**/*.vue');
 
   Object.entries(components).forEach(([path, component]) => {
-    if (getComponentNameFromPath(path) === props.componentname.toLowerCase()) {
+    if (getComponentNameFromPath(path) === componentname.toLowerCase()) {
       currentComponentName.value = defineAsyncComponent(component)
     }
 

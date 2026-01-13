@@ -10,8 +10,10 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.2",
+    "@types/echarts": "^4.9.22",
     "change-case": "^5.4.4",
     "echarts": "^6.0.0",
+    "echarts-gl": "^2.0.9",
     "element-plus": "^2.13.0",
     "jquery": "^3.7.1",
     "mitt": "^3.0.1",

@@ -14,6 +14,27 @@ export default defineConfig({
     define: {
         global: 'globalThis',
     },
+    build: {
+        minify: 'esbuild',
+        target: 'es2015',
+        outDir: 'dist',
+        assetsDir: 'assets',
+        cssCodeSplit: true,
+        sourcemap: false,
+        chunkSizeWarningLimit: 500,
+        assetsInlineLimit: 4096,
+        rollupOptions: {
+            output: {
+                // chunks
+                manualChunks: {
+                    'vue': ['vue', 'vue-router'],
+                    'imba-packages': ['imba-cache'],
+                    'lodash-es': ['lodash-es'],
+                    'echarts': ['echarts', 'echarts-gl'],
+                },
+            },
+        },
+    },
     plugins: [
         vue(),
         routerPagePlugin(),

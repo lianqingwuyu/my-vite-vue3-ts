@@ -2,12 +2,14 @@
 //  font-family: MiSans-Bold;
 //  src: url("~@/assets/ttf/MiSans/MiSans-Bold.ttf") format("truetype");
 //}
-.pointer{
+.pointer {
   cursor: pointer;
 }
-*{
+
+* {
   font-family: MiSans;
 }
+
 :deep(.echarts_tooltip) {
   .tooltips_title {
     font-weight: 400;
@@ -43,4 +45,20 @@
   }
 }
 
+/* 解决按钮点击时的边框问题 */
+.el-button:focus,
+.el-button:active {
+  outline: none !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
 
+/* 如果需要更具体的样式控制 */
+:deep(.el-button) {
+  &:focus,
+  &:active {
+    outline: none;
+    border-color: transparent;
+    box-shadow: none;
+  }
+}
