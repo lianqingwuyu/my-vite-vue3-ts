@@ -1,8 +1,7 @@
 //定时跳动
 import {setCacheLoca, getCacheLoca, delCache} from 'imba-cache';
 import * as echarts from 'echarts';
-
-export const $echarts= echarts;
+export const $echarts = echarts;
 export const setLocal = setCacheLoca
 export const getLocal = getCacheLoca
 export const removeLocal = delCache
@@ -229,6 +228,7 @@ export const SetUnitConversion2 = function (amountStr, dw) {
     //formatted + unit;
 
 }
+
 // 判断字符串长度
 function StrNumSize(tempNum) {
     var stringNum = tempNum.toString()
@@ -239,11 +239,13 @@ function StrNumSize(tempNum) {
     }
     return newNum.length
 }
+
 // 四舍五入
 function DonetoFixed(num, count) {//保留两位并四舍五入
     var newNum = Math.round(num * Math.pow(10, count)) / Math.pow(10, count);
     return newNum;
 }
+
 // echarts 的 tooltip
 export const echarts_tooltip = function (keyList = () => {
 }, className = 'echarts_tooltip') {

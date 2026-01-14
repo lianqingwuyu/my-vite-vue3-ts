@@ -1,5 +1,5 @@
 <template>
-  <div :id="id" class="dialogBox" @click="close" :style="{background:`rgba(0, 0, 0, ${opacity || 0.8})`}">
+  <div :id="id" class="dialogBox wh100" @click="close" :style="{background:`rgba(0, 0, 0, ${opacity || 0.8})`}">
     <div :class="['center', c]" :style="{ width: w, height: h,  background :b ? b : ''}"
          @click.stop="">
       <el-icon :size="24" color="#fff" @click.stop="close" class="el-icon-close">

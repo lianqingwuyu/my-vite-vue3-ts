@@ -7,8 +7,26 @@ import routerPagePlugin from './vite-plugin/vite-plugin-routerPage'
 import autoImportPlugin from './vite-plugin/vite-plugin-auto-import'
 // Vite 的按需组件自动导入
 import autoComponentsPlugin from './vite-plugin/vite-plugin-auto-components'
+
+/**
+ * 导入 unplugin-vue-setup-extend-plus 插件的 Vite 集成模块
+ * 该插件用于扩展 Vue 3 的 setup 语法，提供更多的功能和便利性
+ * @module VueSetupExtend
+ */
+import VueSetupExtend from 'unplugin-vue-setup-extend-plus/vite'
+/**
+ * 导入UnoCSS Vite插件，用于在Vite项目中提供原子化CSS功能
+ * 该插件将UnoCSS集成到Vite构建流程中，支持即时编译和热更新
+ */
+
 import UnoCSS from 'unocss/vite'
+/**
+ * 导入Vue布局插件，用于在Vite项目中自动注册和管理页面布局组件
+ * 该插件提供了基于文件系统的布局路由功能
+ */
 import Layouts from 'vite-plugin-vue-layouts';
+
+
 export default defineConfig({
     base: '/fpjg/',
     define: {
@@ -37,17 +55,19 @@ export default defineConfig({
     },
     plugins: [
         vue(),
+        VueSetupExtend(),
         routerPagePlugin(),
         autoImportPlugin(),
         autoComponentsPlugin(),
         UnoCSS(),
-        Layouts()
+        Layouts(),
     ],
     resolve: {
         alias: {
             '@': resolve(__dirname, './src'),
             '#': resolve(__dirname, 'types'),
-        }
+        },
+        extensions: ['.js', '.ts', '.jsx', '.tsx', '.json', '.vue']
     },
     server: {
         port: 8080,

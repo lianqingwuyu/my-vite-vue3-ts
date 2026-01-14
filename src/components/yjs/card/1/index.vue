@@ -1,7 +1,7 @@
 <template>
   <div class="wh100 box">yjsCard1</div>
 </template>
-<script setup>
+<script setup >
 const {params_box} = defineProps({
   params_box: {
     type: Object,
@@ -17,3 +17,4 @@ console.log(toRaw(params_box))
   background: red;
 }
 </style>
+

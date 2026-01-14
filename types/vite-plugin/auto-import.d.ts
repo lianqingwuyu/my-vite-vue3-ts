@@ -81,6 +81,7 @@ declare global {
   const onUpdated: typeof import('vue').onUpdated
   const onWatcherCleanup: typeof import('vue').onWatcherCleanup
   const provide: typeof import('vue').provide
+  const proxy: typeof import('../../src/hooks/methods.js').proxy
   const qfw: typeof import('../../src/hooks/methods.js').qfw
   const reactive: typeof import('vue').reactive
   const readonly: typeof import('vue').readonly
@@ -99,6 +100,7 @@ declare global {
   const showModel: typeof import('../../src/hooks/dialog.js').showModel
   const storeToRefs: typeof import('pinia').storeToRefs
   const swjgdmls: typeof import('../../src/hooks/methods.js').swjgdmls
+  const that: typeof import('../../src/hooks/methods.js').that
   const toFixedFn: typeof import('../../src/hooks/methods.js').toFixedFn
   const toRaw: typeof import('vue').toRaw
   const toRef: typeof import('vue').toRef
